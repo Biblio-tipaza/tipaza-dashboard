@@ -132,7 +132,7 @@ if not st.session_state.logged_in:
         else:
           st.error("اسم المستخدم أو كلمة المرور غير صحيحة!")
 
-    st.markdown("<br>", unsafe_allow_html=Test = True)
+    st.markdown("<br>", unsafe_allow_html=True)
     if st.button("🚪 الخروج", use_container_width=True):
       st.warning("تم إغلاق التطبيق.")
 
