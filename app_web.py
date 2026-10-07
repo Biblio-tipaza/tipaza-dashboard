@@ -26,7 +26,7 @@ def set_bg_hack(image_file):
             background-repeat: no-repeat;
             background-position: center;
             background-attachment: fixed;
-        }
+        }}
         .login-card {{
             background-color: rgba(255, 255, 255, 0.95);
             padding: 40px;
@@ -36,7 +36,7 @@ def set_bg_hack(image_file):
             margin: auto;
             text-align: right;
             direction: rtl;
-        }
+        }}
         .platform-card {{
             background-color: #ffffff;
             padding: 20px;
@@ -45,19 +45,18 @@ def set_bg_hack(image_file):
             box-shadow: 0 4px 6px rgba(0,0,0,0.1);
             margin-bottom: 15px;
             transition: transform 0.2s;
-        }
+        }}
         .platform-card:hover {{
             transform: translateY(-5px);
-        }
+        }}
         h1, h2, h3, p, label {{
             direction: rtl;
             text-align: right;
-        }
+        }}
         </style>
         """
     st.markdown(css, unsafe_allow_html=True)
   else:
-    # تنسيق افتراضي في حال لم يتم العثور على صورة الشعار
     st.markdown(
         """
         <style>
@@ -106,7 +105,6 @@ if not st.session_state.logged_in:
         else:
           st.error("اسم المستخدم أو كلمة المرور غير صحيحة!")
 
-    # زر الخروج الوهمي في الأسفل
     if st.button("🚪 الخروج", use_container_width=True):
       st.warning("تم إغلاق التطبيق.")
 
@@ -121,7 +119,6 @@ else:
       unsafe_allow_html=True,
   )
 
-  # شبكة المنصات والأنظمة (Grid)
   platforms = [
       ("OPAC بوابة البحث", "🔍"),
       ("CIRCULATION PMB", "📚"),
@@ -141,7 +138,6 @@ else:
       ("SNDL استمارة التسجيل", "📋"),
   ]
 
-  # تقسيم البطاقات على 4 أعمدة لتطابق تصميم الشبكة
   cols = st.columns(4)
   for index, (title, icon) in enumerate(platforms):
     with cols[index % 4]:
