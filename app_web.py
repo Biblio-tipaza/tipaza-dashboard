@@ -39,13 +39,13 @@ def set_bg_hack(image_file):
         }}
         .platform-card {{
             background-color: #ffffff;
-            padding: 20px;
+            padding: 15px;
             border-radius: 12px;
             text-align: center;
             box-shadow: 0 4px 6px rgba(0,0,0,0.1);
-            margin-bottom: 10px;
+            margin-bottom: 5px;
             transition: transform 0.2s;
-            height: 130px;
+            height: 110px;
             display: flex;
             flex-direction: column;
             justify-content: center;
@@ -55,21 +55,26 @@ def set_bg_hack(image_file):
             transform: translateY(-5px);
             box-shadow: 0 6px 12px rgba(0,0,0,0.15);
         }}
+        /* تخصيص وتصغير زر فتح النظام وتلوينه */
         .system-link {{
             display: block;
-            background-color: #111827;
+            background: linear-gradient(135deg, #1abc9c, #16a085);
             color: #ffffff !important;
-            padding: 8px 12px;
+            padding: 5px 10px;
             border-radius: 6px;
             text-align: center;
             text-decoration: none !important;
             font-weight: bold;
-            font-size: 13px;
-            margin-bottom: 15px;
-            transition: background-color 0.2s;
+            font-size: 12px;
+            width: 70%;
+            margin: 0 auto 15px auto;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.2);
+            transition: all 0.2s ease;
         }}
         .system-link:hover {{
-            background-color: #1f2937;
+            background: linear-gradient(135deg, #48c9b0, #1abc9c);
+            transform: scale(1.05);
+            box-shadow: 0 4px 8px rgba(0,0,0,0.3);
         }}
         h1, h2, h3, p, label {{
             direction: rtl;
@@ -102,7 +107,6 @@ if not st.session_state.logged_in:
 
   col1, col2, col3 = st.columns([1, 1.2, 1])
   with col2:
-    # العناوين مع إزاحة نحو اليسار لتتمركز بدقة فوق الإطار الأبيض
     st.markdown(
         """
             <div style="text-align: center; margin-bottom: 15px; transform: translateX(-30px);">
@@ -128,7 +132,6 @@ if not st.session_state.logged_in:
         else:
           st.error("اسم المستخدم أو كلمة المرور غير صحيحة!")
 
-    # مسافة بسيطة قبل زر الخروج
     st.markdown("<br>", unsafe_allow_html=True)
     if st.button("🚪 الخروج", use_container_width=True):
       st.warning("تم إغلاق التطبيق.")
@@ -144,13 +147,11 @@ else:
       unsafe_allow_html=True,
   )
 
-  # تحميل الأنظمة من ملف systems.json
   platforms = []
   if os.path.exists("systems.json"):
     with open("systems.json", "r", encoding="utf-8") as f:
       platforms = json.load(f)
 
-  # عرض المنصات في شبكة من 4 أعمدة
   cols = st.columns(4)
   for index, item in enumerate(platforms):
     title = item.get("name", "")
@@ -161,13 +162,12 @@ else:
       st.markdown(
           f"""
                 <div class="platform-card">
-                    <div style="font-size: 26px; margin-bottom: 6px;">{icon}</div>
-                    <div style="font-weight: bold; color: #2c3e50; font-size: 13px;">{title}</div>
+                    <div style="font-size: 24px; margin-bottom: 4px;">{icon}</div>
+                    <div style="font-weight: bold; color: #2c3e50; font-size: 12px;">{title}</div>
                 </div>
             """,
           unsafe_allow_html=True,
       )
-      # زر رابط حقيقي يفتح في صفحة جديدة
       st.markdown(
           f'<a href="{url}" target="_blank" class="system-link">فتح النظام</a>',
           unsafe_allow_html=True,
