@@ -11,7 +11,7 @@ st.set_page_config(
 )
 
 
-# دالة لتضمين الشعار كخلفية بوضوح تام
+# دالة لتضمين الشعار كخلفية بوضوح عالٍ
 def set_bg_hack(image_file):
   if os.path.exists(image_file):
     with open(image_file, "rb") as f:
@@ -21,21 +21,20 @@ def set_bg_hack(image_file):
         <style>
         .stApp {{
             background-color: #225c68;
-            background-image: linear-gradient(rgba(34, 92, 104, 0.65), rgba(34, 92, 104, 0.65)), url("data:image/png;base64,{encoded}");
-            background-size: 65% auto;
+            background-image: linear-gradient(rgba(34, 92, 104, 0.45), rgba(34, 92, 104, 0.45)), url("data:image/png;base64,{encoded}");
+            background-size: 55% auto;
             background-repeat: no-repeat;
             background-position: center;
             background-attachment: fixed;
         }}
-        .login-card {{
+        /* تخصيص إطار تسجيل الدخول ليصبح أصغر وأنيقاً في المنتصف */
+        .stForm {{
             background-color: rgba(255, 255, 255, 0.95);
-            padding: 40px;
-            border-radius: 20px;
+            padding: 25px !important;
+            border-radius: 15px !important;
             box-shadow: 0 10px 25px rgba(0,0,0,0.3);
-            max-width: 440px;
-            margin: auto;
-            text-align: right;
-            direction: rtl;
+            max-width: 380px !important;
+            margin: 0 auto !important;
         }}
         .platform-card {{
             background-color: #ffffff;
@@ -80,11 +79,12 @@ if not st.session_state.logged_in:
 
   col1, col2, col3 = st.columns([1, 1.2, 1])
   with col2:
+    # العناوين في الوسط تماماً
     st.markdown(
         """
-            <div style="text-align: center; margin-bottom: -15px;">
-                <h2 style="color: #ffffff; font-family: 'Cairo', sans-serif; font-size: 20px; text-shadow: 0 2px 4px rgba(0,0,0,0.5);">لوحة التحكم المركزية للأنظمة والمنصات</h2>
-                <p style="color: #f1c40f; font-size: 14px; margin-top: -5px; font-weight: bold; text-shadow: 0 1px 3px rgba(0,0,0,0.5);">جامعة تيبازة</p>
+            <div style="text-align: center; margin-bottom: 15px;">
+                <h2 style="color: #ffffff; font-family: 'Cairo', sans-serif; font-size: 19px; text-shadow: 0 2px 4px rgba(0,0,0,0.6); margin-bottom: 5px;">لوحة التحكم المركزية للأنظمة والمنصات</h2>
+                <p style="color: #f1c40f; font-size: 15px; font-weight: bold; text-shadow: 0 1px 3px rgba(0,0,0,0.6); margin: 0;">جامعة تيبازة</p>
             </div>
         """,
         unsafe_allow_html=True,
@@ -105,6 +105,8 @@ if not st.session_state.logged_in:
         else:
           st.error("اسم المستخدم أو كلمة المرور غير صحيحة!")
 
+    # مسافة بسيطة قبل زر الخروج
+    st.markdown("<br>", unsafe_allow_html=True)
     if st.button("🚪 الخروج", use_container_width=True):
       st.warning("تم إغلاق التطبيق.")
 
