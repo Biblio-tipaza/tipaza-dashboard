@@ -1,0 +1,82 @@
+[
+  {
+    "name": "التحقق البصري لـ PMB",
+    "url": "https://pmbassistant-v59rqter6v7dmct3kkkmte.streamlit.app/",
+    "icon": "🔍"
+  },
+  {
+    "name": "بوابة البحث بالمكتبة المركزية",
+    "url": "https://bi-cu-tipaza.infinityfreeapp.com/",
+    "icon": "🏛️"
+  },
+  {
+    "name": "CIRCULATION PMB",
+    "url": "https://pmb.cu-tipaza.dz/circ.php",
+    "icon": "🔄"
+  },
+  {
+    "name": "بوابة البحث OPAC",
+    "url": "https://pmb.cu-tipaza.dz/opac_css/index.php?database=cutipaza_pmb",
+    "icon": "📖"
+  },
+  {
+    "name": "بوابة البحث SNDL",
+    "url": "https://www.sndl.cerist.dz/",
+    "icon": "🎓"
+  },
+  {
+    "name": "بوابة البحث OPU",
+    "url": "https://udl.opu.dz/",
+    "icon": "📚"
+  },
+  {
+    "name": "فضاء الموظفين SETS",
+    "url": "https://sets.cu-tipaza.dz/welcome",
+    "icon": "👥"
+  },
+  {
+    "name": "PROGRES Compte",
+    "url": "https://progres.mesrs.dz/webfve/login.xhtml",
+    "icon": "🏛️"
+  },
+  {
+    "name": "نظام تسيير المكتبة",
+    "url": "https://biblio-tipaza.github.io/Library-Control-System/",
+    "icon": "⚙️"
+  },
+  {
+    "name": "قاعدة طلبات SNDL",
+    "url": "https://www.appsheet.com/Home/Apps",
+    "icon": "📊"
+  },
+  {
+    "name": "واجهة تسجيل SNDL",
+    "url": "https://www.appsheet.com/template/AppDef?appName=SNDL_Database_Tipaza-598055636&appId=ec3aa90e-d891-465a-97bc-a31a4d25b6ad&quickStart=False#UX.Views.Feuille%201",
+    "icon": "📝"
+  },
+  {
+    "name": "موقع المكتبة المركزية",
+    "url": "https://bu.univ-tipaza.dz/",
+    "icon": "🌐"
+  },
+  {
+    "name": "استمارة التسجيل SNDL",
+    "url": "https://biblio-tipaza.github.io/SNDL-registration/",
+    "icon": "📋"
+  },
+  {
+    "name": "موقع قواعد الانظمة GitHub",
+    "url": "https://github.com/",
+    "icon": "🐙"
+  },
+  {
+    "name": "نظام المناوبة HOPTAL",
+    "url": "https://biblio-tipaza.github.io/Garde-Hospital/",
+    "icon": "⏰"
+  },
+  {
+    "name": "قاعدة البيانات Data Base",
+    "url": "https://dash.infinityfree.com/accounts/if0_41188825/databases",
+    "icon": "🗄️"
+  }
+]
