@@ -147,6 +147,45 @@ else:
       unsafe_allow_html=True,
   )
 
+  # قسم إضافة نظام جديد باستخدام Expander أو Form منسق
+  with st.expander("➕ إضافة نظام أو منصة جديدة للوحة التحكم"):
+    with st.form("add_system_form"):
+      new_name = st.text_input(
+          "اسم النظام أو المنصة", placeholder="مثال: منصة الإشعارات"
+      )
+      new_url = st.text_input(
+          "رابط النظام (URL)", placeholder="https://example.com"
+      )
+      new_icon = st.text_input(
+          "الأيقونة (رمز تعبيري Emoji)", placeholder="🔗"
+      )
+
+      submitted = st.form_submit_button("حفظ وإضافة النظام")
+      if submitted:
+        if new_name and new_url:
+          # تحميل الملف الحالي
+          platforms = []
+          if os.path.exists("systems.json"):
+            with open("systems.json", "r", encoding="utf-8") as f:
+              platforms = json.load(f)
+
+          # إضافة النظام الجديد
+          platforms.append({
+              "name": new_name,
+              "url": new_url,
+              "icon": new_icon if new_icon else "🔗",
+          })
+
+          # حفظ القائمة المحدثة في ملف systems.json
+          with open("systems.json", "w", encoding="utf-8") as f:
+            json.dump(platforms, f, ensure_ascii=False, indent=2)
+
+          st.success(f"تم إضافة النظام '{new_name}' بنجاح!")
+          st.rerun()
+        else:
+          st.error("الرجاء إدخال اسم النظام ورابط الـ URL على الأقل!")
+
+  # تحميل الأنظمة من ملف systems.json وعرضها
   platforms = []
   if os.path.exists("systems.json"):
     with open("systems.json", "r", encoding="utf-8") as f:
