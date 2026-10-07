@@ -1,4 +1,5 @@
 import base64
+import json
 import os
 import streamlit as st
 
@@ -42,11 +43,33 @@ def set_bg_hack(image_file):
             border-radius: 12px;
             text-align: center;
             box-shadow: 0 4px 6px rgba(0,0,0,0.1);
-            margin-bottom: 15px;
+            margin-bottom: 10px;
             transition: transform 0.2s;
+            height: 130px;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
         }}
         .platform-card:hover {{
             transform: translateY(-5px);
+            box-shadow: 0 6px 12px rgba(0,0,0,0.15);
+        }}
+        .system-link {{
+            display: block;
+            background-color: #111827;
+            color: #ffffff !important;
+            padding: 8px 12px;
+            border-radius: 6px;
+            text-align: center;
+            text-decoration: none !important;
+            font-weight: bold;
+            font-size: 13px;
+            margin-bottom: 15px;
+            transition: background-color 0.2s;
+        }}
+        .system-link:hover {{
+            background-color: #1f2937;
         }}
         h1, h2, h3, p, label {{
             direction: rtl;
@@ -121,39 +144,34 @@ else:
       unsafe_allow_html=True,
   )
 
-  platforms = [
-      ("OPAC بوابة البحث", "🔍"),
-      ("CIRCULATION PMB", "📚"),
-      ("بوابة البحث بالمكتبة المركزية", "🏛️"),
-      ("PMB التحقق البصري لـ", "👁️"),
-      ("PROGRES Compte", "💻"),
-      ("SETS فضاء الموظفين", "👥"),
-      ("OPU بوابة البحث", "🌐"),
-      ("SNDL بوابة البحث", "🔎"),
-      ("موقع المكتبة المركزية", "🌐"),
-      ("SNDL واجهة تسجيل", "📝"),
-      ("SNDL قاعدة طلبات", "🗂️"),
-      ("نظام تسيير المكتبة", "⚙️"),
-      ("Data Base قاعدة البيانات", "🗄️"),
-      ("HPTAI نظام المساومة", "📊"),
-      ("GitHub موقع قواعد الأنظمة", "📂"),
-      ("SNDL استمارة التسجيل", "📋"),
-  ]
+  # تحميل الأنظمة من ملف systems.json
+  platforms = []
+  if os.path.exists("systems.json"):
+    with open("systems.json", "r", encoding="utf-8") as f:
+      platforms = json.load(f)
 
+  # عرض المنصات في شبكة من 4 أعمدة
   cols = st.columns(4)
-  for index, (title, icon) in enumerate(platforms):
+  for index, item in enumerate(platforms):
+    title = item.get("name", "")
+    icon = item.get("icon", "🔗")
+    url = item.get("url", "#")
+
     with cols[index % 4]:
       st.markdown(
           f"""
                 <div class="platform-card">
-                    <div style="font-size: 28px; margin-bottom: 8px;">{icon}</div>
-                    <div style="font-weight: bold; color: #2c3e50; font-size: 14px;">{title}</div>
+                    <div style="font-size: 26px; margin-bottom: 6px;">{icon}</div>
+                    <div style="font-weight: bold; color: #2c3e50; font-size: 13px;">{title}</div>
                 </div>
             """,
           unsafe_allow_html=True,
       )
-      if st.button(f"فتح النظام", key=f"btn_{index}", use_container_width=True):
-        st.toast(f"جاري الانتقال إلى: {title}")
+      # زر رابط حقيقي يفتح في صفحة جديدة
+      st.markdown(
+          f'<a href="{url}" target="_blank" class="system-link">فتح النظام</a>',
+          unsafe_allow_html=True,
+      )
 
   st.markdown("<br>", unsafe_allow_html=True)
   if st.button("تسجيل الخروج", type="primary"):
