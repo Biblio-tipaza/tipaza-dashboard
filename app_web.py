@@ -75,16 +75,16 @@ if "logged_in" not in st.session_state:
 
 # شاشة تسجيل الدخول
 if not st.session_state.logged_in:
-  st.markdown("<br><br>", unsafe_allow_html=True)
+  st.markdown("<br>", unsafe_allow_html=True)
 
   col1, col2, col3 = st.columns([1, 1.2, 1])
   with col2:
-    # العناوين في الوسط تماماً
+    # العناوين في مكانها الصحيح تماماً (خارج الإطار الأبيض وفي منتصف الدائرة العلوية)
     st.markdown(
         """
             <div style="text-align: center; margin-bottom: 15px;">
-                <h2 style="color: #ffffff; font-family: 'Cairo', sans-serif; font-size: 19px; text-shadow: 0 2px 4px rgba(0,0,0,0.6); margin-bottom: 5px;">لوحة التحكم المركزية للأنظمة والمنصات</h2>
-                <p style="color: #f1c40f; font-size: 15px; font-weight: bold; text-shadow: 0 1px 3px rgba(0,0,0,0.6); margin: 0;">جامعة تيبازة</p>
+                <h2 style="color: #ffffff; font-family: 'Cairo', sans-serif; font-size: 18px; font-weight: bold; text-shadow: 0 2px 4px rgba(0,0,0,0.7); margin-bottom: 4px;">لوحة التحكم المركزية للأنظمة والمنصات</h2>
+                <p style="color: #f1c40f; font-size: 15px; font-weight: bold; text-shadow: 0 1px 3px rgba(0,0,0,0.7); margin: 0;">جامعة تيبازة</p>
             </div>
         """,
         unsafe_allow_html=True,
