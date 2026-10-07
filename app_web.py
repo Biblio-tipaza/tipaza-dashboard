@@ -28,7 +28,7 @@ def set_bg_hack(image_file):
             background-position: center;
             background-attachment: fixed;
         }}
-        /* تخصيص إطار تسجيل الدخول ليصبح أصغر وأنيقاً في المنتصف */
+        /* تخصيص إطار تسجيل الدخول */
         .stForm {{
             background-color: rgba(255, 255, 255, 0.95);
             padding: 25px !important;
@@ -37,44 +37,44 @@ def set_bg_hack(image_file):
             max-width: 380px !important;
             margin: 0 auto !important;
         }}
+        /* تخصيص البطاقة لتكون متناسقة تماماً في العرض */
         .platform-card {{
-            background-color: #ffffff;
+            background: linear-gradient(135deg, #ffffff, #f8f9fa);
             padding: 15px;
-            border-radius: 12px;
+            border-top-left-radius: 12px;
+            border-top-right-radius: 12px;
             text-align: center;
             box-shadow: 0 4px 6px rgba(0,0,0,0.1);
-            margin-bottom: 5px;
-            transition: transform 0.2s;
-            height: 110px;
+            height: 100px;
             display: flex;
             flex-direction: column;
             justify-content: center;
             align-items: center;
+            border: 1px solid #e0e0e0;
+            border-bottom: none;
         }}
-        .platform-card:hover {{
-            transform: translateY(-5px);
-            box-shadow: 0 6px 12px rgba(0,0,0,0.15);
-        }}
-        /* تخصيص وتصغير زر فتح النظام وتلوينه */
+        /* تخصيص وتلوين زر فتح النظام ليكون بنفس عرض ومقاس البطاقة تماماً */
         .system-link {{
             display: block;
-            background: linear-gradient(135deg, #1abc9c, #16a085);
+            background: linear-gradient(135deg, #2980b9, #2c3e50);
             color: #ffffff !important;
-            padding: 5px 10px;
-            border-radius: 6px;
+            padding: 8px 10px;
+            border-bottom-left-radius: 12px;
+            border-bottom-right-radius: 12px;
             text-align: center;
             text-decoration: none !important;
             font-weight: bold;
-            font-size: 12px;
-            width: 70%;
-            margin: 0 auto 15px auto;
-            box-shadow: 0 2px 4px rgba(0,0,0,0.2);
+            font-size: 13px;
+            margin-bottom: 20px;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.1);
             transition: all 0.2s ease;
+            border: 1px solid #2c3e50;
+            border-top: none;
         }}
         .system-link:hover {{
-            background: linear-gradient(135deg, #48c9b0, #1abc9c);
-            transform: scale(1.05);
-            box-shadow: 0 4px 8px rgba(0,0,0,0.3);
+            background: linear-gradient(135deg, #3498db, #2980b9);
+            transform: translateY(-2px);
+            box-shadow: 0 6px 12px rgba(0,0,0,0.2);
         }}
         h1, h2, h3, p, label {{
             direction: rtl;
@@ -132,7 +132,7 @@ if not st.session_state.logged_in:
         else:
           st.error("اسم المستخدم أو كلمة المرور غير صحيحة!")
 
-    st.markdown("<br>", unsafe_allow_html=True)
+    st.markdown("<br>", unsafe_allow_html=Test = True)
     if st.button("🚪 الخروج", use_container_width=True):
       st.warning("تم إغلاق التطبيق.")
 
