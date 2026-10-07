@@ -53,7 +53,7 @@ def set_bg_hack(image_file):
             border: 1px solid #e0e0e0;
             border-bottom: none;
         }}
-        /* تخصيص وتلوين زر فتح النظام ليكون بنفس عرض ومقاس البطاقة تماماً */
+        /* تخصيص وتلوين زر فتح النظام */
         .system-link {{
             display: block;
             background: linear-gradient(135deg, #2980b9, #2c3e50);
@@ -138,52 +138,80 @@ if not st.session_state.logged_in:
 
 # لوحة التحكم الرئيسية بعد تسجيل الدخول
 else:
+  # الإطار العلوي للعنوان
   st.markdown(
       """
-        <div style="background-color: rgba(255, 255, 255, 0.92); padding: 15px; border-radius: 10px; margin-bottom: 25px; text-align: center; box-shadow: 0 4px 15px rgba(0,0,0,0.2);">
+        <div style="background-color: rgba(255, 255, 255, 0.92); padding: 15px; border-radius: 10px; margin-bottom: 15px; text-align: center; box-shadow: 0 4px 15px rgba(0,0,0,0.2);">
             <h2 style="color: #225c68; margin: 0;">لوحة التحكم المركزية للأنظمة والمنصات - جامعة تيبازة</h2>
         </div>
     """,
       unsafe_allow_html=True,
   )
 
-  # قسم إضافة نظام جديد باستخدام Expander أو Form منسق
-  with st.expander("➕ إضافة نظام أو منصة جديدة للوحة التحكم"):
-    with st.form("add_system_form"):
-      new_name = st.text_input(
-          "اسم النظام أو المنصة", placeholder="مثال: منصة الإشعارات"
+  # زر الإضافة داخل الإطار العلوي (مخصص بلون أحمر وبتنسيق جذاب)
+  col_space1, col_add, col_space2 = st.columns([2, 1.5, 2])
+  with col_add:
+    # استخدام st.popover لفتح نافذة صغيرة لإدخال البيانات عند الضغط عليه
+    with st.popover("➕ إضافة جديد", use_container_width=True):
+      st.markdown(
+          "<h4 style='text-align: right; color: #c0392b;'>إضافة نظام جديد</h4>",
+          unsafe_allow_html=True,
       )
-      new_url = st.text_input(
-          "رابط النظام (URL)", placeholder="https://example.com"
-      )
-      new_icon = st.text_input(
-          "الأيقونة (رمز تعبيري Emoji)", placeholder="🔗"
-      )
+      with st.form("add_system_form_popup"):
+        new_name = st.text_input(
+            "اسم النظام", placeholder="مثال: منصة الإشعارات"
+        )
+        new_url = st.text_input("رابط النظام (URL)", placeholder="https://...")
+        new_icon = st.text_input("الأيقونة (Emoji)", placeholder="📌")
 
-      submitted = st.form_submit_button("حفظ وإضافة النظام")
-      if submitted:
-        if new_name and new_url:
-          # تحميل الملف الحالي
-          platforms = []
-          if os.path.exists("systems.json"):
-            with open("systems.json", "r", encoding="utf-8") as f:
-              platforms = json.load(f)
+        submitted = st.form_submit_button("حفظ في القائمة")
+        if submitted:
+          if new_name and new_url:
+            platforms = []
+            if os.path.exists("systems.json"):
+              with open("systems.json", "r", encoding="utf-8") as f:
+                platforms = json.load(f)
 
-          # إضافة النظام الجديد
-          platforms.append({
-              "name": new_name,
-              "url": new_url,
-              "icon": new_icon if new_icon else "🔗",
-          })
+            platforms.append({
+                "name": new_name,
+                "url": new_url,
+                "icon": new_icon if new_icon else "🔗",
+            })
 
-          # حفظ القائمة المحدثة في ملف systems.json
-          with open("systems.json", "w", encoding="utf-8") as f:
-            json.dump(platforms, f, ensure_ascii=False, indent=2)
+            with open("systems.json", "w", encoding="utf-8") as f:
+              json.dump(platforms, f, ensure_ascii=False, indent=2)
 
-          st.success(f"تم إضافة النظام '{new_name}' بنجاح!")
-          st.rerun()
-        else:
-          st.error("الرجاء إدخال اسم النظام ورابط الـ URL على الأقل!")
+            st.success("تمت الإضافة بنجاح!")
+            st.rerun()
+          else:
+            st.error("الرجاء ملء اسم النظام والرابط!")
+
+  st.markdown("<br>", unsafe_allow_html=True)
+
+  # تنسيق زر "➕ إضافة جديد" بلون أحمر متناسق مع بقية الأزرار
+  st.markdown(
+      """
+    <style>
+    /* تخصيص زر الـ Popover ليكون بلون أحمر وبنفس مقاسات أزرار الأنظمة */
+    div[data-testid="stPopover"] > button {
+        background: linear-gradient(135deg, #c0392b, #962d22) !important;
+        color: white !important;
+        font-weight: bold !important;
+        border-radius: 8px !important;
+        border: 1px solid #962d22 !important;
+        box-shadow: 0 4px 6px rgba(0,0,0,0.1) !important;
+        width: 100% !important;
+        transition: all 0.2s ease !important;
+    }
+    div[data-testid="stPopover"] > button:hover {
+        background: linear-gradient(135deg, #e74c3c, #c0392b) !important;
+        transform: translateY(-2px);
+        box-shadow: 0 6px 12px rgba(0,0,0,0.2) !important;
+    }
+    </style>
+    """,
+      unsafe_allow_html=True,
+  )
 
   # تحميل الأنظمة من ملف systems.json وعرضها
   platforms = []
