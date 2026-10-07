@@ -11,7 +11,7 @@ st.set_page_config(
 )
 
 
-# دالة لتضمين الشعار كخلفية عبر Base64 لضمان ظهوره على السحابة والمحلي
+# دالة لتضمين الشعار كخلفية بوضوح تام
 def set_bg_hack(image_file):
   if os.path.exists(image_file):
     with open(image_file, "rb") as f:
@@ -21,8 +21,8 @@ def set_bg_hack(image_file):
         <style>
         .stApp {{
             background-color: #225c68;
-            background-image: linear-gradient(rgba(34, 92, 104, 0.82), rgba(34, 92, 104, 0.82)), url("data:image/png;base64,{encoded}");
-            background-size: 45% auto;
+            background-image: linear-gradient(rgba(34, 92, 104, 0.65), rgba(34, 92, 104, 0.65)), url("data:image/png;base64,{encoded}");
+            background-size: 65% auto;
             background-repeat: no-repeat;
             background-position: center;
             background-attachment: fixed;
@@ -83,8 +83,8 @@ if not st.session_state.logged_in:
     st.markdown(
         """
             <div style="text-align: center; margin-bottom: -15px;">
-                <h2 style="color: #ffffff; font-family: 'Cairo', sans-serif; font-size: 20px; text-shadow: 0 2px 4px rgba(0,0,0,0.3);">لوحة التحكم المركزية للأنظمة والمنصات</h2>
-                <p style="color: #f1c40f; font-size: 14px; margin-top: -5px; font-weight: bold;">جامعة تيبازة</p>
+                <h2 style="color: #ffffff; font-family: 'Cairo', sans-serif; font-size: 20px; text-shadow: 0 2px 4px rgba(0,0,0,0.5);">لوحة التحكم المركزية للأنظمة والمنصات</h2>
+                <p style="color: #f1c40f; font-size: 14px; margin-top: -5px; font-weight: bold; text-shadow: 0 1px 3px rgba(0,0,0,0.5);">جامعة تيبازة</p>
             </div>
         """,
         unsafe_allow_html=True,
