@@ -77,22 +77,35 @@ def set_bg_hack(image_file):
             box-shadow: 0 6px 12px rgba(0,0,0,0.2);
         }}
         
-        /* تنسيق زر الـ Popover ليكون باللون الأحمر وداخل الإطار العلوي */
+        /* جعل الإطار العلوي يجمع العناصر بشكل متناسق واحترافي */
+        .header-box {{
+            background-color: rgba(255, 255, 255, 0.95);
+            padding: 12px 20px;
+            border-radius: 10px;
+            margin-bottom: 25px;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.2);
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+        }}
+
+        /* تنسيق وتلوين زر "إضافة جديد" باللون الأحمر حصرياً */
         div[data-testid="stPopover"] > button {{
             background: linear-gradient(135deg, #c0392b, #962d22) !important;
-            color: white !important;
+            color: #ffffff !important;
             font-weight: bold !important;
             font-size: 14px !important;
             border-radius: 8px !important;
             border: 1px solid #962d22 !important;
             box-shadow: 0 2px 5px rgba(0,0,0,0.15) !important;
-            padding: 6px 12px !important;
+            padding: 6px 14px !important;
             transition: all 0.2s ease !important;
         }}
         div[data-testid="stPopover"] > button:hover {{
             background: linear-gradient(135deg, #e74c3c, #c0392b) !important;
             transform: translateY(-1px);
             box-shadow: 0 4px 8px rgba(0,0,0,0.2) !important;
+            color: #ffffff !important;
         }}
 
         h1, h2, h3, p, label {{
@@ -157,66 +170,58 @@ if not st.session_state.logged_in:
 
 # لوحة التحكم الرئيسية بعد تسجيل الدخول
 else:
-  # دمج العنوان وزر الإضافة داخل نفس الحاوية البيضاء العلوية (بجوار بعضهما البعض)
-  header_bg_container = st.container()
-  with header_bg_container:
+  # وضع العنوان وزر الإضافة داخل سطر واحد باستخدام أعمدة Streamlit المتجاورة تماماً
+  col_title, col_btn = st.columns([4.2, 1.2])
+
+  with col_btn:
+    # زر الإضافة المنسدل (Popover) باللون الأحمر وفي الجهة اليسرى
+    with st.popover("➕ إضافة جديد", use_container_width=True):
+      st.markdown(
+          "<h4 style='text-align: right; color: #c0392b;'>إضافة نظام جديد</h4>",
+          unsafe_allow_html=True,
+      )
+      with st.form("add_system_form_popup"):
+        new_name = st.text_input(
+            "اسم النظام", placeholder="مثال: منصة الإشعارات"
+        )
+        new_url = st.text_input(
+            "رابط النظام (URL)", placeholder="https://..."
+        )
+        new_icon = st.text_input("الأيقونة (Emoji)", placeholder="📌")
+
+        submitted = st.form_submit_button("حفظ في القائمة")
+        if submitted:
+          if new_name and new_url:
+            platforms = []
+            if os.path.exists("systems.json"):
+              with open("systems.json", "r", encoding="utf-8") as f:
+                platforms = json.load(f)
+
+            platforms.append({
+                "name": new_name,
+                "url": new_url,
+                "icon": new_icon if new_icon else "🔗",
+            })
+
+            with open("systems.json", "w", encoding="utf-8") as f:
+              json.dump(platforms, f, ensure_ascii=False, indent=2)
+
+            st.success("تمت الإضافة بنجاح!")
+            st.rerun()
+          else:
+            st.error("الرجاء ملء اسم النظام والرابط!")
+
+  with col_title:
     st.markdown(
         """
-        <div style="background-color: rgba(255, 255, 255, 0.95); padding: 15px 20px; border-radius: 10px; margin-bottom: 25px; box-shadow: 0 4px 15px rgba(0,0,0,0.2);">
+        <div style="background-color: rgba(255, 255, 255, 0.95); padding: 12px 20px; border-radius: 10px; box-shadow: 0 4px 15px rgba(0,0,0,0.2);">
+            <h2 style="color: #225c68; margin: 0; text-align: right; font-size: 21px;">لوحة التحكم المركزية للأنظمة والمنصات - جامعة تيبازة</h2>
+        </div>
         """,
         unsafe_allow_html=True,
     )
 
-    # استخدام أعمدة لوضع زر الإضافة في الجهة اليسرى (مكان رقم 1) والعنوان في الجهة اليمنى
-    col_title, col_btn = st.columns([4, 1.2])
-
-    with col_btn:
-      # زر الإضافة المنسدل (Popover) بلون أحمر وموجود داخل الإطار العلوي
-      with st.popover("➕ إضافة جديد", use_container_width=True):
-        st.markdown(
-            "<h4 style='text-align: right; color: #c0392b;'>إضافة نظام جديد</h4>",
-            unsafe_allow_html=True,
-        )
-        with st.form("add_system_form_popup"):
-          new_name = st.text_input(
-              "اسم النظام", placeholder="مثال: منصة الإشعارات"
-          )
-          new_url = st.text_input(
-              "رابط النظام (URL)", placeholder="https://..."
-          )
-          new_icon = st.text_input("الأيقونة (Emoji)", placeholder="📌")
-
-          submitted = st.form_submit_button("حفظ في القائمة")
-          if submitted:
-            if new_name and new_url:
-              platforms = []
-              if os.path.exists("systems.json"):
-                with open("systems.json", "r", encoding="utf-8") as f:
-                  platforms = json.load(f)
-
-              platforms.append({
-                  "name": new_name,
-                  "url": new_url,
-                  "icon": new_icon if new_icon else "🔗",
-              })
-
-              with open("systems.json", "w", encoding="utf-8") as f:
-                json.dump(platforms, f, ensure_ascii=False, indent=2)
-
-              st.success("تمت الإضافة بنجاح!")
-              st.rerun()
-            else:
-              st.error("الرجاء ملء اسم النظام والرابط!")
-
-    with col_title:
-      st.markdown(
-          """
-            <h2 style="color: #225c68; margin: 0; text-align: right; padding-top: 5px; font-size: 22px;">لوحة التحكم المركزية للأنظمة والمنصات - جامعة تيبازة</h2>
-          """,
-          unsafe_allow_html=True,
-      )
-
-    st.markdown("</div>", unsafe_allow_html=True)
+  st.markdown("<div style='margin-top: 15px;'></div>", unsafe_allow_html=True)
 
   # تحميل الأنظمة من ملف systems.json وعرضها
   platforms = []
