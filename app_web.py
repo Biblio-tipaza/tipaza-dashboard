@@ -77,35 +77,27 @@ def set_bg_hack(image_file):
             box-shadow: 0 6px 12px rgba(0,0,0,0.2);
         }}
         
-        /* جعل الإطار العلوي يجمع العناصر بشكل متناسق واحترافي */
-        .header-box {{
-            background-color: rgba(255, 255, 255, 0.95);
-            padding: 12px 20px;
-            border-radius: 10px;
-            margin-bottom: 25px;
-            box-shadow: 0 4px 15px rgba(0,0,0,0.2);
-            display: flex;
-            align-items: center;
-            justify-content: space-between;
-        }}
-
-        /* تنسيق وتلوين زر "إضافة جديد" باللون الأحمر حصرياً */
-        div[data-testid="stPopover"] > button {{
+        /* تلوين زر Popover (إضافة جديد) باللون الأحمر حصرياً وتنسيقه */
+        button[data-testid="baseButton-secondary"] {{
             background: linear-gradient(135deg, #c0392b, #962d22) !important;
             color: #ffffff !important;
             font-weight: bold !important;
-            font-size: 14px !important;
+            border: 1px solid #962d22 !important;
+        }}
+        div[data-testid="stPopover"] button {{
+            background: linear-gradient(135deg, #c0392b, #962d22) !important;
+            color: #ffffff !important;
+            font-weight: bold !important;
             border-radius: 8px !important;
             border: 1px solid #962d22 !important;
             box-shadow: 0 2px 5px rgba(0,0,0,0.15) !important;
-            padding: 6px 14px !important;
-            transition: all 0.2s ease !important;
+            width: 100% !important;
         }}
-        div[data-testid="stPopover"] > button:hover {{
+        div[data-testid="stPopover"] button:hover {{
             background: linear-gradient(135deg, #e74c3c, #c0392b) !important;
-            transform: translateY(-1px);
-            box-shadow: 0 4px 8px rgba(0,0,0,0.2) !important;
             color: #ffffff !important;
+            border: 1px solid #c0392b !important;
+            transform: translateY(-1px);
         }}
 
         h1, h2, h3, p, label {{
@@ -170,11 +162,11 @@ if not st.session_state.logged_in:
 
 # لوحة التحكم الرئيسية بعد تسجيل الدخول
 else:
-  # وضع العنوان وزر الإضافة داخل سطر واحد باستخدام أعمدة Streamlit المتجاورة تماماً
-  col_title, col_btn = st.columns([4.2, 1.2])
+  # توزيع الأعمدة بحيث يكون العنوان في المنتصف تماماً وزر الإضافة في اليسار
+  col_empty1, col_title, col_btn = st.columns([0.1, 4.5, 1.3])
 
   with col_btn:
-    # زر الإضافة المنسدل (Popover) باللون الأحمر وفي الجهة اليسرى
+    # زر الإضافة المنسدل (Popover) باللون الأحمر في الجهة اليسرى
     with st.popover("➕ إضافة جديد", use_container_width=True):
       st.markdown(
           "<h4 style='text-align: right; color: #c0392b;'>إضافة نظام جديد</h4>",
@@ -214,8 +206,8 @@ else:
   with col_title:
     st.markdown(
         """
-        <div style="background-color: rgba(255, 255, 255, 0.95); padding: 12px 20px; border-radius: 10px; box-shadow: 0 4px 15px rgba(0,0,0,0.2);">
-            <h2 style="color: #225c68; margin: 0; text-align: right; font-size: 21px;">لوحة التحكم المركزية للأنظمة والمنصات - جامعة تيبازة</h2>
+        <div style="background-color: rgba(255, 255, 255, 0.95); padding: 12px 20px; border-radius: 10px; box-shadow: 0 4px 15px rgba(0,0,0,0.2); text-align: center;">
+            <h2 style="color: #225c68; margin: 0; font-size: 21px;">لوحة التحكم المركزية للأنظمة والمنصات - جامعة تيبازة</h2>
         </div>
         """,
         unsafe_allow_html=True,
