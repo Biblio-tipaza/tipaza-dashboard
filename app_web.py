@@ -28,6 +28,12 @@ def set_bg_hack(image_file):
             background-position: center;
             background-attachment: fixed;
         }}
+        
+        /* تقليص المسافة بين الأعمدة إلى حوالي 1 سم */
+        [data-testid="stHorizontalBlock"] {{
+            gap: 12px !important;
+        }}
+
         /* تخصيص إطار تسجيل الدخول */
         .stForm {{
             background-color: rgba(255, 255, 255, 0.95);
@@ -38,14 +44,14 @@ def set_bg_hack(image_file):
             margin: 0 auto !important;
         }}
         
-        /* تصميم البطاقات المدمجة (نصف الطول مع ألوان متعددة وجذابة كالنمط الثاني) */
+        /* تصميم البطاقات المدمجة */
         .platform-card {{
             padding: 10px 15px;
             border-radius: 12px;
             text-align: center;
             box-shadow: 0 4px 8px rgba(0,0,0,0.15);
-            height: 90px; /* تقليص الطول إلى النصف تقريباً */
-            width: 50%;
+            height: 90px;
+            width: 100%;
             display: flex;
             align-items: center;
             justify-content: space-between;
@@ -111,6 +117,7 @@ def set_bg_hack(image_file):
         """
         <style>
         .stApp { background-color: #225c68; }
+        [data-testid="stHorizontalBlock"] { gap: 12px !important; }
         </style>
         """,
         unsafe_allow_html=True,
