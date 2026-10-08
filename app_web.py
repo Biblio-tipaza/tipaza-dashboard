@@ -86,7 +86,7 @@ def set_bg_hack(image_file):
         }}
         .card-title {{
             font-weight: bold;
-            font-size: 16px;
+            font-size: 20px;
             color: #ffffff;
             text-align: right;
             white-space: nowrap;
