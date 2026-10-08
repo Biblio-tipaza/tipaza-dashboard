@@ -104,7 +104,7 @@ def set_bg_hack(image_file):
             border-radius: 8px !important;
             border: 1px solid #962d22 !important;
             box-shadow: 0 2px 5px rgba(0,0,0,0.15) !important;
-            width: 100% !important;
+            width: 70% !important;
         }}
         div[data-testid="stPopover"] button:hover {{
             background: linear-gradient(135deg, #e74c3c, #c0392b) !important;
