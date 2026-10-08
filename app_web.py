@@ -80,7 +80,7 @@ def set_bg_hack(image_file):
             text-decoration: none !important;
         }}
         .card-icon {{
-            font-size: 35px;
+            font-size: 40px;
             margin-left: 10px;
             flex-shrink: 0;
         }}
