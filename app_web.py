@@ -31,7 +31,7 @@ def set_bg_hack(image_file):
         
         /* تقليص المسافة بين الأعمدة والحاويات الأفقية */
         [data-testid="stHorizontalBlock"] {{
-            gap: 6px !important;
+            gap: 2px !important;
         }}
         
         [data-testid="column"] {{
