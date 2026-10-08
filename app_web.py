@@ -29,7 +29,7 @@ def set_bg_hack(image_file):
             background-attachment: fixed;
         }}
         
-        /* تقليص المسافة بين الأعمدة والحاويات الأفقية */
+        /* تقليص المسافة بين الأعمدة إلى الحد الأدنى تماماً */
         [data-testid="stHorizontalBlock"] {{
             gap: 2px !important;
         }}
@@ -37,7 +37,7 @@ def set_bg_hack(image_file):
         [data-testid="column"] {{
             flex: 1 !important;
             min-width: 0 !important;
-            padding: 0 3px !important;
+            padding: 0 1px !important;
         }}
 
         /* تخصيص إطار تسجيل الدخول */
@@ -50,14 +50,14 @@ def set_bg_hack(image_file):
             margin: 0 auto !important;
         }}
         
-        /* تصميم البطاقات المدمجة مع ضبط العرض على 60% وتوسيطها */
+        /* تصميم البطاقات المدمجة مع ضبط العرض على 85% وتوسيطها */
         .platform-card {{
             padding: 10px 15px;
             border-radius: 12px;
             text-align: center;
             box-shadow: 0 4px 8px rgba(0,0,0,0.15);
             height: 90px;
-            width: 60% !important;
+            width: 85% !important;
             margin-left: auto !important;
             margin-right: auto !important;
             display: flex;
@@ -125,7 +125,7 @@ def set_bg_hack(image_file):
         """
         <style>
         .stApp { background-color: #225c68; }
-        [data-testid="stHorizontalBlock"] { gap: 6px !important; }
+        [data-testid="stHorizontalBlock"] { gap: 2px !important; }
         </style>
         """,
         unsafe_allow_html=True,
