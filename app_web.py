@@ -101,7 +101,7 @@ def set_bg_hack(image_file):
             background: linear-gradient(135deg, #c0392b, #962d22) !important;
             color: #ffffff !important;
             font-weight: bold !important;
-            font-size: 22px !important;
+            font-size: 30px !important;
             border-radius: 8px !important;
             border: 1px solid #962d22 !important;
             box-shadow: 0 2px 5px rgba(0,0,0,0.15) !important;
