@@ -19,64 +19,70 @@ def set_bg_hack(image_file):
       data = f.read()
     encoded = base64.b64encode(data).decode()
     css = f"""
-        <style>
-        .stApp {{
+<style>
+        .stApp {
             background-color: #225c68;
             background-image: linear-gradient(rgba(34, 92, 104, 0.45), rgba(34, 92, 104, 0.45)), url("data:image/png;base64,{encoded}");
             background-size: 55% auto;
             background-repeat: no-repeat;
             background-position: center;
             background-attachment: fixed;
-        }}
+        }
         
-        /* تقليص المسافة بين الأعمدة إلى حوالي 1 سم */
-        [data-testid="stHorizontalBlock"] {{
-            gap: 1px !important;
-        }}
+        /* تقليص المسافة بين الأعمدة والحاويات الأفقية بشكل تام */
+        [data-testid="stHorizontalBlock"] {
+            gap: 8px !important;
+        }
+        
+        [data-testid="column"] {
+            flex: 1 !important;
+            min-width: 0 !important;
+            padding: 0 4px !important;
+        }
 
         /* تخصيص إطار تسجيل الدخول */
-        .stForm {{
+        .stForm {
             background-color: rgba(255, 255, 255, 0.95);
             padding: 25px !important;
             border-radius: 15px !important;
             box-shadow: 0 10px 25px rgba(0,0,0,0.3);
             max-width: 380px !important;
             margin: 0 auto !important;
-        }}
+        }
         
-        /* تصميم البطاقات المدمجة */
-        .platform-card {{
+        /* تصميم البطاقات المدمجة وتعبئة عرض العمود بالكامل */
+        .platform-card {
             padding: 10px 15px;
             border-radius: 12px;
             text-align: center;
             box-shadow: 0 4px 8px rgba(0,0,0,0.15);
             height: 90px;
-            width: 60%;
+            width: 60% !important;
             display: flex;
             align-items: center;
             justify-content: space-between;
             margin-bottom: 12px;
             border: 1px solid rgba(255,255,255,0.3);
             transition: transform 0.2s ease, box-shadow 0.2s ease;
-        }}
-        .platform-card:hover {{
+        }
+        .platform-card:hover {
             transform: translateY(-2px);
             box-shadow: 0 6px 12px rgba(0,0,0,0.25);
-        }}
+        }
         
         /* تنسيق الأيقونة والنص داخل البطاقة المدمجة */
-        .card-content {{
+        .card-content {
             display: flex;
             align-items: center;
             width: 100%;
             text-decoration: none !important;
-        }}
-        .card-icon {{
+        }
+        .card-icon {
             font-size: 22px;
             margin-left: 10px;
             flex-shrink: 0;
-        }}
-        .card-title {{
+        }
+        .card-title {
             font-weight: bold;
             font-size: 13px;
             color: #ffffff;
@@ -86,10 +92,10 @@ def set_bg_hack(image_file):
             text-overflow: ellipsis;
             width: 100%;
             text-shadow: 0 1px 2px rgba(0,0,0,0.2);
-        }}
+        }
 
         /* تلوين زر Popover (إضافة جديد) باللون الأحمر وتنسيقه */
-        div[data-testid="stPopover"] button {{
+        div[data-testid="stPopover"] button {
             background: linear-gradient(135deg, #c0392b, #962d22) !important;
             color: #ffffff !important;
             font-weight: bold !important;
@@ -97,18 +103,18 @@ def set_bg_hack(image_file):
             border: 1px solid #962d22 !important;
             box-shadow: 0 2px 5px rgba(0,0,0,0.15) !important;
             width: 100% !important;
-        }}
-        div[data-testid="stPopover"] button:hover {{
+        }
+        div[data-testid="stPopover"] button:hover {
             background: linear-gradient(135deg, #e74c3c, #c0392b) !important;
             color: #ffffff !important;
             border: 1px solid #c0392b !important;
             transform: translateY(-1px);
-        }}
+        }
 
-        h1, h2, h3, p, label {{
+        h1, h2, h3, p, label {
             direction: rtl;
             text-align: right;
-        }}
+        }
         </style>
         """
     st.markdown(css, unsafe_allow_html=True)
