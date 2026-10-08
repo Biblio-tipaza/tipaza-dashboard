@@ -37,53 +37,51 @@ def set_bg_hack(image_file):
             max-width: 380px !important;
             margin: 0 auto !important;
         }}
-        /* تخصيص البطاقة لتكون متناسقة تماماً في العرض */
+        
+        /* تصميم البطاقات المدمجة (نصف الطول مع ألوان متعددة وجذابة كالنمط الثاني) */
         .platform-card {{
-            background: linear-gradient(135deg, #ffffff, #f8f9fa);
-            padding: 15px;
-            border-top-left-radius: 12px;
-            border-top-right-radius: 12px;
+            padding: 10px 15px;
+            border-radius: 12px;
             text-align: center;
-            box-shadow: 0 4px 6px rgba(0,0,0,0.1);
-            height: 100px;
+            box-shadow: 0 4px 8px rgba(0,0,0,0.15);
+            height: 65px; /* تقليص الطول إلى النصف تقريباً */
             display: flex;
-            flex-direction: column;
-            justify-content: center;
             align-items: center;
-            border: 1px solid #e0e0e0;
-            border-bottom: none;
+            justify-content: space-between;
+            margin-bottom: 12px;
+            border: 1px solid rgba(255,255,255,0.3);
+            transition: transform 0.2s ease, box-shadow 0.2s ease;
         }}
-        /* تخصيص وتلوين زر فتح النظام */
-        .system-link {{
-            display: block;
-            background: linear-gradient(135deg, #2980b9, #2c3e50);
-            color: #ffffff !important;
-            padding: 8px 10px;
-            border-bottom-left-radius: 12px;
-            border-bottom-right-radius: 12px;
-            text-align: center;
-            text-decoration: none !important;
-            font-weight: bold;
-            font-size: 13px;
-            margin-bottom: 20px;
-            box-shadow: 0 4px 6px rgba(0,0,0,0.1);
-            transition: all 0.2s ease;
-            border: 1px solid #2c3e50;
-            border-top: none;
-        }}
-        .system-link:hover {{
-            background: linear-gradient(135deg, #3498db, #2980b9);
+        .platform-card:hover {{
             transform: translateY(-2px);
-            box-shadow: 0 6px 12px rgba(0,0,0,0.2);
+            box-shadow: 0 6px 12px rgba(0,0,0,0.25);
         }}
         
-        /* تلوين زر Popover (إضافة جديد) باللون الأحمر حصرياً وتنسيقه */
-        button[data-testid="baseButton-secondary"] {{
-            background: linear-gradient(135deg, #c0392b, #962d22) !important;
-            color: #ffffff !important;
-            font-weight: bold !important;
-            border: 1px solid #962d22 !important;
+        /* تنسيق الأيقونة والنص داخل البطاقة المدمجة */
+        .card-content {{
+            display: flex;
+            align-items: center;
+            width: 100%;
+            text-decoration: none !important;
         }}
+        .card-icon {{
+            font-size: 22px;
+            margin-left: 10px;
+            flex-shrink: 0;
+        }}
+        .card-title {{
+            font-weight: bold;
+            font-size: 13px;
+            color: #ffffff;
+            text-align: right;
+            white-space: nowrap;
+            overflow: hidden;
+            text-overflow: ellipsis;
+            width: 100%;
+            text-shadow: 0 1px 2px rgba(0,0,0,0.2);
+        }}
+
+        /* تلوين زر Popover (إضافة جديد) باللون الأحمر وتنسيقه */
         div[data-testid="stPopover"] button {{
             background: linear-gradient(135deg, #c0392b, #962d22) !important;
             color: #ffffff !important;
@@ -162,11 +160,10 @@ if not st.session_state.logged_in:
 
 # لوحة التحكم الرئيسية بعد تسجيل الدخول
 else:
-  # توزيع الأعمدة بحيث يكون العنوان في المنتصف تماماً وزر الإضافة في اليسار
+  # توزيع الأعمدة للإطار العلوي (العنوان في المنتصف وزر الإضافة في اليسار)
   col_empty1, col_title, col_btn = st.columns([0.1, 4.5, 1.3])
 
   with col_btn:
-    # زر الإضافة المنسدل (Popover) باللون الأحمر في الجهة اليسرى
     with st.popover("➕ إضافة جديد", use_container_width=True):
       st.markdown(
           "<h4 style='text-align: right; color: #c0392b;'>إضافة نظام جديد</h4>",
@@ -215,6 +212,18 @@ else:
 
   st.markdown("<div style='margin-top: 15px;'></div>", unsafe_allow_html=True)
 
+  # قائمة من الألوان المتناسقة والجميلة لتوزيعها على البطاقات
+  card_colors = [
+      "linear-gradient(135deg, #2980b9, #2c3e50)",  # أزرق غامق
+      "linear-gradient(135deg, #27ae60, #1e8449)",  # أخضر
+      "linear-gradient(135deg, #8e44ad, #5b2c6f)",  # بنفسجي
+      "linear-gradient(135deg, #d35400, #a04000)",  # برتقالي/قرميدي
+      "linear-gradient(135deg, #16a085, #0e6655)",  # تركواز
+      "linear-gradient(135deg, #c0392b, #962d22)",  # أحمر داكن
+      "linear-gradient(135deg, #f39c12, #d68910)",  # أصفر ذهبي
+      "linear-gradient(135deg, #34495e, #2c3e50)",  # رمادي فحمي
+  ]
+
   # تحميل الأنظمة من ملف systems.json وعرضها
   platforms = []
   if os.path.exists("systems.json"):
@@ -226,19 +235,18 @@ else:
     title = item.get("name", "")
     icon = item.get("icon", "🔗")
     url = item.get("url", "#")
+    bg_color = card_colors[index % len(card_colors)]
 
     with cols[index % 4]:
       st.markdown(
           f"""
-                <div class="platform-card">
-                    <div style="font-size: 24px; margin-bottom: 4px;">{icon}</div>
-                    <div style="font-weight: bold; color: #2c3e50; font-size: 12px;">{title}</div>
+                <div class="platform-card" style="background: {bg_color};">
+                    <a href="{url}" target="_blank" class="card-content">
+                        <span class="card-title">{title}</span>
+                        <span class="card-icon">{icon}</span>
+                    </a>
                 </div>
             """,
-          unsafe_allow_html=True,
-      )
-      st.markdown(
-          f'<a href="{url}" target="_blank" class="system-link">فتح النظام</a>',
           unsafe_allow_html=True,
       )
 
