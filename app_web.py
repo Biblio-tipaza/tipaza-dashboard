@@ -237,7 +237,6 @@ else:
       "linear-gradient(135deg, #d35400, #a04000)",  # برتقالي/قرميدي
       "linear-gradient(135deg, #16a085, #0e6655)",  # تركواز
       "linear-gradient(135deg, #c0392b, #962d22)",  # أحمر داكن
-      "linear-gradient(135deg, #f39c12, #d68910)",  # أصفر ذهبي
       "linear-gradient(135deg, #34495e, #2c3e50)",  # رمادي فحمي
   ]
 
