@@ -230,7 +230,7 @@ class LoginWindow(QMainWindow):
         password = self.password_input.text().strip()
         
         correct_user = "admin"
-        correct_pass = "12345"
+        correct_pass = "biblio/001"
         
         if not username or not password:
             QMessageBox.warning(self, "تنبيه", "يرجى إدخال اسم المستخدم وكلمة المرور!")
