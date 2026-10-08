@@ -45,6 +45,7 @@ def set_bg_hack(image_file):
             text-align: center;
             box-shadow: 0 4px 8px rgba(0,0,0,0.15);
             height: 90px; /* تقليص الطول إلى النصف تقريباً */
+            width: 50%;
             display: flex;
             align-items: center;
             justify-content: space-between;
