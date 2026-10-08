@@ -221,7 +221,7 @@ else:
     st.markdown(
         """
         <div style="background-color: rgba(255, 255, 255, 0.95); padding: 10px 15px; border-radius: 10px; box-shadow: 0 4px 15px rgba(0,0,0,0.2); text-align: center;">
-            <h2 style="color: #225c68; margin: 0; font-size: 30px;">لوحة التحكم المركزية للأنظمة والمنصات - جامعة تيبازة</h2>
+            <h2 style="color: #225c68; margin: 1; font-size: 40px;">لوحة التحكم المركزية للأنظمة والمنصات - جامعة تيبازة</h2>
         </div>
         """,
         unsafe_allow_html=True,
