@@ -31,7 +31,7 @@ def set_bg_hack(image_file):
         
         /* تقليص المسافة بين الأعمدة إلى حوالي 1 سم */
         [data-testid="stHorizontalBlock"] {{
-            gap: 12px !important;
+            gap: 6px !important;
         }}
 
         /* تخصيص إطار تسجيل الدخول */
