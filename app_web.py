@@ -166,7 +166,7 @@ if not st.session_state.logged_in:
       submit = st.form_submit_button("تسجيل الدخول", use_container_width=True)
 
       if submit:
-        if username == "admin" and password == "12345":
+        if username == "Admin" and password == "biblio/001":
           st.session_state.logged_in = True
           st.rerun()
         else:
