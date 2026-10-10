@@ -10,12 +10,12 @@
     "icon": "🏛️"
   },
   {
-    "name": "CIRCULATION PMB",
+    "name": "CIRCULATION التسجيل والإعارة PMB",
     "url": "https://pmb.cu-tipaza.dz/circ.php",
     "icon": "🔄"
   },
   {
-    "name": "بوابة البحث OPAC",
+    "name": " PMB بوابة البحث OPAC",
     "url": "https://pmb.cu-tipaza.dz/opac_css/index.php?database=cutipaza_pmb",
     "icon": "📖"
   },
@@ -25,17 +25,17 @@
     "icon": "🎓"
   },
   {
-    "name": "بوابة البحث OPU",
+    "name": "IQRAA بوابة البحث OPU",
     "url": "https://udl.opu.dz/",
     "icon": "📚"
   },
   {
-    "name": "فضاء الموظفين SETS",
+    "name": " Platforme فضاء الموظفين SETS",
     "url": "https://sets.cu-tipaza.dz/welcome",
     "icon": "👥"
   },
   {
-    "name": "PROGRES Qutence",
+    "name": "PROGRES ابراء الذمة Qutence",
     "url": "https://progres.mesrs.dz/webfve/login.xhtml",
     "icon": "🏛️"
   },
@@ -45,18 +45,18 @@
     "icon": "⚙️"
   },
   {
-    "name": "قاعدة طلبات SNDL",
+    "name": " قاعدة طلبات التسجيل SNDL",
     "url": "https://www.appsheet.com/Home/Apps",
     "icon": "📊"
   },
   {
-    "name": "واجهة تسجيل SNDL",
+    "name": " واجهة استمارة التسجيل SNDL",
     "url": "https://www.appsheet.com/template/AppDef?appName=SNDL_Database_Tipaza-598055636&appId=ec3aa90e-d891-465a-97bc-a31a4d25b6ad&quickStart=False#UX.Views.Feuille%201",
     "icon": "📝"
   },
   {
-    "name": "موقع المكتبة المركزية",
-    "url": "https://bu.univ-tipaza.dz/",
+    "name": " موقع المكتبة المركزية",
+    "url": "https://-tipaza.dz/",
     "icon": "🌐"
   },
   {
